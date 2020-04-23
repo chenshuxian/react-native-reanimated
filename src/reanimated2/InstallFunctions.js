@@ -4,18 +4,21 @@ export function installFunctions(innerNativeModule) {
     innerNativeModule.workletEval(path, `(${fun.asString})`);
   }
 
-  // install assign
+  /**
+   * install assign
+   * updates every field in [left] object with values for [right] object(for those which exist in both)
+   */
   install('Reanimated.assign', function (left, right) {
     'worklet';
     if (typeof right === 'object' && !right.value) {
       for (let key of Object.keys(right)) {
         if (left[key]) {
-          assign(left[key], right[key]);
+          Reanimated.assign(left[key], right[key]);
         }
       }
     } else if (Array.isArray(right)) {
       for (let i; i < right.length; i++) {
-        assign(left[i], right[i]);
+        Reanimated.assign(left[i], right[i]);
       }
     } else {
       if (left.set) {
