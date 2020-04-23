@@ -25,7 +25,7 @@ const workletBody = new Worklet(
       memory.time = Date.now();
       memory.prevPosition = 0;
       state.finished.set(0);
-      this.log('start spring');
+      console.log('start spring');
     }
 
     const now = Date.now();
@@ -89,7 +89,7 @@ const workletBody = new Worklet(
         sv.forceSet(config.toValue.value);
       } 
       state.finished.set(1);
-      this.log('finish spring');
+      console.log('finish spring');
       return true;
     }
   }
